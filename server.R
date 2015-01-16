@@ -56,10 +56,10 @@ shinyServer(function(input, output) {
     if (toString(input$country) != "") caption <- paste(caption, "in", toString(input$country))
     caption <- paste(caption, "( year ", toString(year), ")")
     
-    # the legend defines the size of the vineyards (make also selectable)
+    # the legend defines the size of the vineyards.
     legend <- c(1,5,10,50,100,500,1000,5000)
     
-    # plot the member distribtution (in green: #008B00) on the map:
+    # plot the member distribtution (or in green: #008B00) on the map:
     p <- ggmap(map)
     p <- p + geom_point(mapping = aes(x = Lon, y = Lat, size = sqrt(VineCount)), colour="#FF7300", data = membersSubset, alpha = .75, na.rm = TRUE, show_guide = TRUE)
     p <- p + scale_size_area(breaks = sqrt(legend), labels = legend, limits=c(1, 120), name = "vineyard size")
