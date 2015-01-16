@@ -1,7 +1,7 @@
 #
 # server code for Developing Data Products-project
 #
-# UdenVH, 09/01/2015
+# BvH, 16/01/2015
 #
 # documentation:
 #  - Scoping (http://rstudio.github.io/shiny/tutorial/#scoping)

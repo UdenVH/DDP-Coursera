@@ -6,7 +6,7 @@
 # run from the directory where this file can be found with:
 # runApp(".")
 #
-# UdenVH, 09/01/2015
+# BvH, 16/01/2015
 #
 
 # setwd("~/Documents/Coursera - Developing Data Products/project/bwb")
