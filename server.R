@@ -38,30 +38,30 @@ shinyServer(function(input, output) {
   output$showExpansion <- renderPlot({
     # subset the ledenBWB Data Frame and keep the members from the year of 
     # founding the association up to the year provided by the input slider.
-    year <- 2007 + input$years
-    membersSubset <- ledenBWB[jaarLidmaatschap <= year,]
+    year <- 2006 + input$years
+    membersSubset <- ledenBWB[Year <= year,]
     
     # subset on the size of the vineyard provided by the input slider.
     if (input$size == "s") 
-       membersSubset <- membersSubset[membersSubset$aantalStokken <= 250,]
+       membersSubset <- membersSubset[membersSubset$VineCount <= 250,]
     else if (input$size == "l") 
-      membersSubset <- membersSubset[membersSubset$aantalStokken > 250,]
+      membersSubset <- membersSubset[membersSubset$VineCount > 250,]
     # else keep all (don't subset)
     
     # subset on the country of origin provided by the checkbox.
-    membersSubset <- membersSubset[membersSubset$landVanHerkomst %in% input$country,]
+    membersSubset <- membersSubset[membersSubset$Country %in% input$country,]
 
     # define the caption text:
     caption <- "Vineyard location and sizes"
     if (toString(input$country) != "") caption <- paste(caption, "in", toString(input$country))
-    caption <- paste(caption, "(year ", toString(year), ")")
+    caption <- paste(caption, "( year ", toString(year), ")")
     
     # the legend defines the size of the vineyards (make also selectable)
     legend <- c(1,5,10,50,100,500,1000,5000)
     
     # plot the member distribtution (in green: #008B00) on the map:
     p <- ggmap(map)
-    p <- p + geom_point(mapping = aes(x = lon, y = lat, size = sqrt(aantalStokken)), colour="#FF7300", data = membersSubset, alpha = .75, na.rm = TRUE, show_guide = TRUE)
+    p <- p + geom_point(mapping = aes(x = Lon, y = Lat, size = sqrt(VineCount)), colour="#FF7300", data = membersSubset, alpha = .75, na.rm = TRUE, show_guide = TRUE)
     p <- p + scale_size_area(breaks = sqrt(legend), labels = legend, limits=c(1, 120), name = "vineyard size")
     p + ggtitle(caption)
   }

@@ -9,10 +9,6 @@
 # UdenVH, 09/01/2015
 #
 
-#
-# TODO: 
-#  1. presentation, like: http://rpubs.com/albahnsen/model, http://rpubs.com/Debarati/52894
-#
 # setwd("~/Documents/Coursera - Developing Data Products/project/bwb")
 library(shiny)
 
@@ -25,16 +21,16 @@ shinyUI(fluidPage(
   titlePanel("Expansion of the association 'Brabantse Wijnbouwers'"),
   p("The 'Brabantse Wijnbouwers' are a Dutch speaking community of hobby grapegrowers and winemakers 
     in Belgium and the Netherlands. 
-    The association was founded in 2007 and aims to spread knowledge on cool climate vineyards 
+    The association was founded in 2006 and aims to spread knowledge on cool climate vineyards 
     and wine making amongst its members and others with an interest in winemaking. Since its founding the association has grown from 
-    7 to almost 350 members.",br(),br(),"You can view the expansion over the years by moving the 'years'-slider, select the member in Belgium and/or The Netherlands with the check-box and select on vineyard-size (measured in number of vines)."),
+    7 to a little over 350 members.",br(),br(),"You can view the expansion over the years by moving the 'years'-slider, select on vineyard-size (measured in number of vines) and select the vineyards in Belgium and/or The Netherlands with the check-box."),
   sidebarLayout(
     # Sidebar with a slider input for years since founding the association.
     sidebarPanel(
       sliderInput("years", 
-                  "Years since founding in 2007:",
+                  "Years since founding in 2006:",
                   min = 0,
-                  max = 8, 
+                  max = 9, 
                   value = 0,
                   step = 1),
       br(),
@@ -58,7 +54,7 @@ shinyUI(fluidPage(
                   "Map-size in pixels (adjust to your screen):", 
                   min = 400,
                   max = 1100, 
-                  value = 600,
+                  value = 700,
                   step = 100)
     ),
     
@@ -67,8 +63,8 @@ shinyUI(fluidPage(
       plotOutput("showExpansion")
     )
 ),
-p(strong("Source:")," http://www.brabantsewijnbouwers.nl",br(),
+p(strong("Data source:")," http://www.brabantsewijnbouwers.nl",br(),
   strong("Note:")," the data is the result of a data-mining",br(),
  "exercise where html-scraping with R was applied",br(),
- "to the membership-page at this website.")
+ "to the membership-page on this website.")
 ))
